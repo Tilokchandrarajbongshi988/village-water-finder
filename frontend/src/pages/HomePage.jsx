@@ -1,4 +1,12 @@
+import { useState } from "react";
+import LocationButton from "../components/LocationButton.jsx";
+import RadiusSelector from "../components/RadiusSelector.jsx";
+import useGeolocation from "../hooks/useGeolocation.js";
+
 function HomePage() {
+  const [radius, setRadius] = useState(5);
+  const { coordinates, loading, error, requestLocation } = useGeolocation();
+
   return (
     <main className="home-page">
       <header className="hero-section">
@@ -14,12 +22,18 @@ function HomePage() {
 
         <div className="form-section">
           <h3>Location</h3>
-          <p>Your location will be shown here.</p>
+          <p>Allow location access to search near you.</p>
+          <LocationButton
+            onClick={requestLocation}
+            loading={loading}
+            success={Boolean(coordinates)}
+            error={error}
+          />
         </div>
 
         <div className="form-section">
           <h3>Radius</h3>
-          <p>Choose how far you want to search.</p>
+          <RadiusSelector radius={radius} setRadius={setRadius} />
         </div>
 
         <div className="button-section">
