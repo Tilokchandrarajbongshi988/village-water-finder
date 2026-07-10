@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
 import healthRouter from './routes/health.route.js';
+import waterSourceRouter from './routes/waterSource.route.js';
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(cors({ origin: process.env.CLIENT_URL }));
 app.use(express.json());
 
 app.use('/api/health', healthRouter);
+app.use('/api/water-sources', waterSourceRouter);
 
 const startServer = async () => {
   try {
