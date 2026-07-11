@@ -11,6 +11,7 @@ function useGeolocation() {
       return;
     }
 
+    setCoordinates(null);
     setLoading(true);
     setError("");
 
@@ -23,20 +24,17 @@ function useGeolocation() {
         setLoading(false);
       },
       (locationError) => {
-        const errorMessages = {
+        const messages = {
           1: "Location permission was denied.",
           2: "Your location is currently unavailable.",
           3: "The location request timed out.",
         };
 
-        setError(
-          errorMessages[locationError.code] || "Unable to get your location."
-        );
+        setCoordinates(null);
+        setError(messages[locationError.code] || "Unable to get your location.");
         setLoading(false);
       },
-      {
-        timeout: 10000,
-      }
+      { timeout: 10000 }
     );
   };
 

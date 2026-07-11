@@ -1,13 +1,16 @@
 {
   "name": "cursor-demo-project",
   "version": "1.0.0",
-  "description": "",
+  "description": "Find nearby mapped drinking-water sources using OpenStreetMap data.",
   "main": "index.js",
   "scripts": {
     "server": "nodemon backend/server.js",
     "start": "node backend/server.js",
-    "seed": "node backend/data/seedWaterSources.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "test": "echo \"No automated tests configured\""
+  },
+  "engines": {
+    "node": ">=22.12.0"
   },
   "keywords": [],
   "author": "",
@@ -16,8 +19,7 @@
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1",
-    "mongoose": "^9.7.4"
+    "express": "^5.2.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
